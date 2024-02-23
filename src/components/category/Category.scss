@@ -1,0 +1,48 @@
+.Category {
+    width: 38%;
+    aspect-ratio: 16/9;
+    background-image: url('../../assets/poster.jpeg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+    border-radius: 25px;
+    .category-content {
+        height: 100%;
+        background-color: rgba($color: #000000, $alpha: 0.7);
+        transition: 0.4s ease;
+        border-radius: 25px;
+
+        .heading {
+            color: white;
+            border-radius: 25px;
+            visibility: visible;
+        }
+
+        &:hover {
+            background-color: rgba($color: #000000, $alpha: 0.1);
+
+            
+            .heading{
+                visibility: hidden;
+            }
+            
+           
+            
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .Category {
+        width: 48%;
+    }
+    
+}
+
+@media screen and (max-width: 480px) {
+    .Category {
+        width: 100%;
+    }
+    
+}
