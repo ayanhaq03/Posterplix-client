@@ -8,6 +8,7 @@ import ProductDetail from "./pages/productDetail/ProductDetail";
 import {useDispatch} from 'react-redux'
 import { fetchCategories } from "./redux/categorySlice";
 import Payments from "./components/payments/Payments";
+import Newsletter from "./components/footer/newsletter/Newsletter";
 
 
 function App() {
@@ -38,7 +39,7 @@ function App() {
                     />
                 </Routes>
             </main>
-             
+             <Newsletter/>
             <Footer />
             
         </div>
