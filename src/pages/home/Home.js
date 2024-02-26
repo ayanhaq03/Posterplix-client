@@ -8,6 +8,7 @@ import "./Home.scss";
 
 
 
+
 function Home() {
 
     const categories = useSelector((state) => state.categoryReducer.categories);
@@ -42,6 +43,8 @@ function Home() {
                 </div>
             </section>
 
+          
+            
             <section className="collection container">
                 <div className="info">
                     <h2 className="heading">Our Top Picks</h2>
@@ -56,7 +59,7 @@ function Home() {
                 </div>
             </section>
             
-          
+         
          
         </div>
     );
