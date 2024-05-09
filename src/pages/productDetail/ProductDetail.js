@@ -16,11 +16,15 @@ function ProductDetail() {
     const quantity = cart.find(item => item.key === params.productId)?.quantity || 0;
 
     async function fetchData() {
-        const productResponse = await axiosClient.get(
-            `/products?filters[key][$eq]=${params.productId}&populate=*`
-        );
-        if (productResponse.data.data.length > 0) {
-            setProduct(productResponse.data.data[0]);
+        try {
+            const productResponse = await axiosClient.get(
+                `/products?filters[key][$eq]=${params.productId}&populate=*`
+            );
+            if (productResponse.data.data.length > 0) {
+                setProduct(productResponse.data.data[0]);
+            }
+        } catch (error) {
+            console.error("Error fetching product:", error);
         }
     }
 
@@ -39,16 +43,14 @@ function ProductDetail() {
                 <div className="product-layout">
                     <div className="product-img">
                         <img
-                            src={product?.attributes.image.data.attributes.url}
+                            src={product.attributes?.image?.data?.attributes?.url || dummyImg}
                             alt="product img"
                         />
                     </div>
                     <div className="product-info">
-                        <h1 className="heading">{product?.attributes.title}</h1>
-                        <h3 className="price">₹ {product?.attributes.price}</h3>
-                        <p className="description">
-                            {product?.attributes.desc}
-                        </p>
+                        <h1 className="heading">{product.attributes?.title}</h1>
+                        <h3 className="price">₹ {product.attributes?.price}</h3>
+                        <p className="description">{product.attributes?.desc}</p>
                         <div className="cart-options">
                             <div className="quantity-selector">
                                 <span className="btn decrement" onClick={() => dispatch(removeFromCart(product))}>-</span>
