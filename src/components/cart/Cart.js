@@ -1,3 +1,4 @@
+
 import React from "react";
 import "./Cart.scss";
 import { AiOutlineClose } from "react-icons/ai";
@@ -63,7 +64,7 @@ function Cart({ onClose }) {
                             <h3 className="total-message">Total:</h3>
                             <h3 className="total-value">₹ {totalAmount}</h3>
                         </div>
-                         <a href="https://buy.stripe.com/test_aEU8zE8mo7H6240145" className="checkout btn-primary" onClick={handleCheckout}> Checkout now</a> 
+                        <div className="checkout btn-primary" onClick={handleCheckout}>Checkout now</div>
                     </div>
                 )}
             </div>
