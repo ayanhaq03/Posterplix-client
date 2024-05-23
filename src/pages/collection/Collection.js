@@ -25,13 +25,22 @@ function Collection() {
 
     const [sortBy, setSortBy] = useState(sortOptions[0].sort);
 
+    useEffect(() => {
+        fetchProducts();
+    }, [params.categoryId, sortBy]); // Watch for changes in categoryId and sortBy
+    
     async function fetchProducts() {
-        const url = params.categoryId
-            ? `/products?populate=image&filters[category][key][$eq]=${params.categoryId}&sort=${sortBy}`
-            : `/products?populate=image&sort=${sortBy}`;
-        const response = await axiosClient.get(url);
-        setProducts(response.data.data);
+        try {
+            const url = params.categoryId
+                ? `/products?populate=image&filters[category][key][$eq]=${params.categoryId}&sort=${sortBy}`
+                : `/products?populate=image&sort=${sortBy}`;
+            const response = await axiosClient.get(url);
+            setProducts(response.data.data);
+        } catch (error) {
+            console.error("Error fetching products:", error);
+        }
     }
+    
 
     useEffect(() => {
         setCategoryId(params.categoryId);
@@ -100,6 +109,7 @@ function Collection() {
                         {products.map((product) => (
                             <Product key={product.id} product={product} />
                         ))}
+
                     </div>
                 </div>
             </div>

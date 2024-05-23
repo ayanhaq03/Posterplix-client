@@ -1,3 +1,8 @@
+Here is the Link for deployed version of posterplix 
+https://posterplix-client.vercel.app/
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
