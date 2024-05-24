@@ -8,12 +8,17 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 function Navbar() {
   const [openCart, setOpenCart] = useState(false);
-  
+
   const categories = useSelector((state) => state.categoryReducer.categories);
   const cart = useSelector((state) => state.cartReducer.cart);
   let totalItems = 0;
   cart.forEach((item) => (totalItems += item.quantity));
-  const { loginWithRedirect, isAuthenticated, logout} = useAuth0();
+  const { loginWithRedirect, isAuthenticated, logout, user, isLoading } =
+    useAuth0();
+
+  if (isLoading) {
+    return <div>Loading ...</div>;
+  }
   return (
     <>
       <nav className="Navbar">
@@ -47,12 +52,18 @@ function Navbar() {
                 <span className="cart-count center">{totalItems}</span>
               )}
             </div>
-
+            { isAuthenticated && (
+              <div>
+                <img className="profile" src={user.picture} alt={user.name} />
+              </div>
+              )}
             <div className="login">
+           
+
               {isAuthenticated ? (
                 <li>
                   <button
-                    className="cta btn-primary"
+                    className="cta btn-primary lg-btn "
                     onClick={() =>
                       logout({
                         logoutParams: { returnTo: window.location.origin },
@@ -65,7 +76,7 @@ function Navbar() {
               ) : (
                 <li>
                   <button
-                    className="cta btn-primary"
+                    className="cta btn-primary  lg-btn"
                     onClick={() => loginWithRedirect()}
                   >
                     Log In

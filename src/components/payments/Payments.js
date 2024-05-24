@@ -5,6 +5,7 @@ import {BiErrorCircle} from 'react-icons/bi'
 import './Payments.scss'
 import { useDispatch } from "react-redux";
 import { resetCart } from "../../redux/cartSlice";
+import { Link } from "react-router-dom";
 
 function Payments() {
     const params = useParams();
@@ -32,7 +33,7 @@ function Payments() {
         <div className="Payments">
             <div className="icon">{infoData[status].icon}</div>
             <h2 className="message">{infoData[status].message}</h2>
-            <button className="btn-primary">{infoData[status].cta}</button>
+           <Link to="/category"> <button  className="btn-primary">{infoData[status].cta}</button></Link>
         </div>
     );
 }
